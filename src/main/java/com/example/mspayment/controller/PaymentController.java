@@ -1,12 +1,11 @@
 package com.example.mspayment.controller;
 
 import com.example.mspayment.model.PaymentRequest;
+import com.example.mspayment.model.PaymentResponse;
 import com.example.mspayment.service.PaymentsService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("v1/payments")
@@ -14,7 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class PaymentController {
     private  final PaymentsService paymentService;
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public void savePayment(@RequestBody PaymentRequest request){
         paymentService.savePayment(request);
+    }
+    @GetMapping("/{id}")
+    public PaymentResponse getPaymentById(@PathVariable Long id){
+    return paymentService.getPaymentById(id);
     }
 }
