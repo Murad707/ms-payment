@@ -2,6 +2,7 @@ package com.example.mspayment.controller;
 
 import com.example.mspayment.model.PaymentRequest;
 import com.example.mspayment.model.PaymentResponse;
+import com.example.mspayment.model.PaymentUpdate;
 import com.example.mspayment.service.PaymentsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -27,5 +28,10 @@ public class PaymentController {
     @GetMapping
     public List<PaymentResponse> getPayments(){
         return paymentService.getPayments();
+    }
+    @PutMapping("/{id}")
+    public void update(@PathVariable Long id,
+                       @RequestBody PaymentUpdate update){
+        paymentService.update(id, update);
     }
 }

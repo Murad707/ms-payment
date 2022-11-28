@@ -1,9 +1,11 @@
 package com.example.mspayment.service;
 
+import com.example.mspayment.dao.entity.PaymentEntity;
 import com.example.mspayment.dao.repository.Repository;
 import com.example.mspayment.mapper.PaymentMapper;
 import com.example.mspayment.model.PaymentRequest;
 import com.example.mspayment.model.PaymentResponse;
+import com.example.mspayment.model.PaymentUpdate;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -49,4 +51,18 @@ public class PaymentsService {
         log.info("ActionLog.getPayments.end:");
       return payments;
     }
+    public void update(Long id,PaymentUpdate update){
+        log.info("ActionLog.update.start:id{}",id);
+       var payment=fetchPayment(id);
+
+        PaymentMapper.update(payment,update);
+       repository.save(payment);
+        log.info("ActionLog.update.end:id{}",id);
+    }
+
+    private PaymentEntity fetchPayment(Long id){
+        return repository.findById(id).orElseThrow(RuntimeException::new);
+    }
+
+
 }
