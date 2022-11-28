@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("v1/payments")
 @RequiredArgsConstructor
@@ -20,5 +22,10 @@ public class PaymentController {
     @GetMapping("/{id}")
     public PaymentResponse getPaymentById(@PathVariable Long id){
     return paymentService.getPaymentById(id);
+    }
+
+    @GetMapping
+    public List<PaymentResponse> getPayments(){
+        return paymentService.getPayments();
     }
 }

@@ -8,6 +8,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.example.mspayment.mapper.PaymentMapper.*;
 import static com.example.mspayment.mapper.PaymentMapper.mapToEntity;
 import static com.example.mspayment.mapper.PaymentMapper.mapToResponse;
 
@@ -34,5 +38,15 @@ public class PaymentsService {
 
         log.info("ActionLog.getPaymentById.end:id{}",id);
         return mapToResponse(payment);
+    }
+    public List<PaymentResponse> getPayments(){
+        log.info("ActionLog.getPayments.start:");
+      var payments=repository
+              .findAll()
+                .stream()
+                .map(payment-> mapToResponse(payment))
+              .collect(Collectors.toList());
+        log.info("ActionLog.getPayments.end:");
+      return payments;
     }
 }
