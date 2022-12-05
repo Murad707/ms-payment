@@ -16,3 +16,7 @@ spring:
   liquibase:
     change-log: classpath:liquibase/changelog-master.yml
 
+client:
+  ms-country:
+    endpoint: http://localhost:8080
+

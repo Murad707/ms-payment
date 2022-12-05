@@ -27,7 +27,7 @@ public class PaymentController {
 
     @GetMapping
     public List<PaymentResponse> getPayments(){
-        return paymentService.getPayments();
+        return paymentService.getPayments1();
     }
     @PutMapping("/{id}")
     public void update(@PathVariable Long id,

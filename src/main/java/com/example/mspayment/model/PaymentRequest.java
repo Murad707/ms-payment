@@ -14,4 +14,6 @@ import java.math.BigDecimal;
 public class PaymentRequest {
     private BigDecimal amount;
     private String descriptions;
+
+    private String currency;
 }

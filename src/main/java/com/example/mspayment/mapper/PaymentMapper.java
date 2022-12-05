@@ -6,8 +6,7 @@ import com.example.mspayment.model.PaymentResponse;
 import com.example.mspayment.model.PaymentUpdate;
 
 public class PaymentMapper {
-
-    public static PaymentEntity mapToEntity(PaymentRequest request){
+public static PaymentEntity mapToEntity(PaymentRequest request){
         return PaymentEntity.builder()
                 .amount(request.getAmount())
                 .descriptions(request.getDescriptions())
